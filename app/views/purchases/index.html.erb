@@ -1,14 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<header class="navigation">
+  <a href=<%= groups_path %> id="back-btn"><i class="fa-solid fa-arrow-left"></i>Back</a>
+  <h2>Purchases</h2>
+  <a href="#"></a>
+</header>
 
-<h1>Purchases</h1>
-
-<div id="purchases">
-  <% @purchases.each do |purchase| %>
-    <%= render purchase %>
-    <p>
-      <%= link_to "Show this purchase", purchase %>
-    </p>
-  <% end %>
+<div class="add-purchase-wrapper">
+  <span>Total purchases: <strong>$<%= @group.total_purchases %></strong></span>
+  <%= link_to "New purchase", new_group_purchase_path(@group), id: "new-purchase-btn" %>
 </div>
-
-<%= link_to "New purchase", new_purchase_path %>
+<% if @group.purchases.empty? %>
+  <p class="no-content-msg">There are no purchases added currently</p>
+<% else %>
+  <div class="purchases-wrapper">
+    <div id="purchases">
+      <% @group.ordered_purchases.each do |purchase| %>
+        <a href=<%= group_purchase_path(@group, purchase) %> id="purchase-links"><%= render purchase %></a>
+      <% end %>
+    </div>
+  </div>
+<% end %>
