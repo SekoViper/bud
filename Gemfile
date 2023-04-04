@@ -7,6 +7,14 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'devise'
 
+gem 'sassc'
+
+gem 'font-awesome-sass', '~> 6.3.0'
+
+gem 'factory_bot_rails', '~> 6.1.0'
+
+gem 'bullet'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 
