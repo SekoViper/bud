@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-
-  get 'welcome/home'
-  resources :groups
-  resources :users
-
-  resources :purchases
-
-  get 'new', to: 'purchases#new', as: 'new_purchase_path'
-
-  resources :groups do
-    resources :purchases
+  
+  authenticated :user do
+    root 'groups#index', as: :authenticated_root
+  end
+  
+  unauthenticated do
+    root 'welcome#home', as: :unauthenticated_root
   end
 
-  root "welcome#home"
+  root to: 'home#index'
+  
+  get '/groups/all' => "groups#index"
+  
+  resources :groups, only: %i[index create new update all] do
+    resources :purchases, only: %i[index create new show]
+  end
 end
