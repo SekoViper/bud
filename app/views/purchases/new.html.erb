@@ -1,9 +1,10 @@
-<h1>New purchase</h1>
+<header class="navigation">
+    <a href=<%= group_purchases_path(@group) %> id="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+    <h2>Purchases</h2>
+    <a href="#"></a>
+  </header>  
+  <div class="purchase-form">
+    <h3>New purchase</h3>
 
-<%= render "form", purchase: @purchase %>
-
-<br>
-
-<div>
-  <%= link_to "Back to purchases", purchases_path %>
-</div>
+    <%= render "form", purchase: @purchase, groups: @groups, group: @group %>
+  </div>
