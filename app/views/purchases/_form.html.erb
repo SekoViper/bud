@@ -1,6 +1,6 @@
-<%= form_with(model: purchase) do |form| %>
+<%= form_with(model: purchase, url: group_purchases_path(group)) do |form| %>
   <% if purchase.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
 
       <ul>
@@ -11,27 +11,20 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="input-fields">
+    <%= form.text_field :name, placeholder: 'Name of the item..', class: "links links_with_border", :required => true %>
+    
+    <%= form.text_field :reciever, placeholder: 'To:', class: "links links_with_border", :required => true %>
+    <%= form.number_field :amount, placeholder: 'Amount in USD', class: "links links_with_border", min: 0, :required => true %>
+    
+    <%= form.text_area :description, placeholder: 'Description..', class: "links links_with_border", :required => true %>
   </div>
 
   <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.text_field :amount %>
+    <%= form.select :group, @groups, { :include_blank => '-- Select category --' }, :required => true %>
   </div>
 
   <div>
-    <%= form.label :receiver, style: "display: block" %>
-    <%= form.text_field :receiver %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Add purchase", id: 'add-puchase-btn' %>
   </div>
 <% end %>
