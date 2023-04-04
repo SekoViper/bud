@@ -4,13 +4,16 @@ class PurchasesController < ApplicationController
   # GET /purchases or /purchases.json
   def index
     @group = Group.find_by(id: params[:group_id])
-    @purchases = @group.purchases
-    @purchases = Purchase.all
+    @purchases = if @group.present?
+                   @group.purchases
+                 else
+                   Purchase.all
+                 end
   end
 
   # GET /purchases/1 or /purchases/1.json
   def show
-    @group = params[:group_id]
+    @group = Group.find_by(id: params[:group_id]) || @purchase.groups.first
   end
 
   # GET /purchases/new
@@ -29,19 +32,19 @@ class PurchasesController < ApplicationController
 
   # POST /purchases or /purchases.json
   def create
-    purchase = Purchase.create(name: purchase_params[:name], amount: purchase_params[:amount],
-                               reciever: purchase_params[:reciever], description: purchase_params[:description],
-                               author: current_user)
-    purchase_group = PurchaseGroup.create(group_id: purchase_params[:group], purchase_id: purchase.id)
+    @purchase = Purchase.create(name: purchase_params[:name], amount: purchase_params[:amount],
+                                reciever: purchase_params[:reciever], description: purchase_params[:description],
+                                author: current_user)
+    purchase_group = PurchaseGroup.create(group_id: purchase_params[:group], purchase_id: @purchase.id)
 
     respond_to do |format|
       if purchase_group.save
         format.html { redirect_to group_purchases_url(params[:group_id]), notice: 'Purchase was successfully created.' }
-        format.json { render :show, status: :created, location: purchase }
+        format.json { render :show, status: :created, location: @purchase }
       else
-        purchase&.destroy
+        @purchase.destroy
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: purchase.errors, status: :unprocessable_entity }
+        format.json { render json: @purchase.errors, status: :unprocessable_entity }
       end
     end
   end
