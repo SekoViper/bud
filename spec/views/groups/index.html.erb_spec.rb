@@ -5,17 +5,17 @@ RSpec.describe 'groups/index', type: :view do
 
   before(:each) do
     assign(:groups, [
-      Group.create!(
-        name: 'Name 1',
-        icon: 'Icon',
-        user: user
-      ),
-      Group.create!(
-        name: 'Name 2',
-        icon: 'Icon',
-        user: user
-      )
-    ])
+             Group.create!(
+               name: 'Name 1',
+               icon: 'Icon',
+               user:
+             ),
+             Group.create!(
+               name: 'Name 2',
+               icon: 'Icon',
+               user:
+             )
+           ])
   end
 
   it 'renders a list of groups' do
