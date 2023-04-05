@@ -47,6 +47,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_123505) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.datetime "confirmed_at"
+    t.string "confirmation_token"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
