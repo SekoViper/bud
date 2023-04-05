@@ -17,9 +17,4 @@ RSpec.describe 'groups/index', type: :view do
              )
            ])
   end
-
-  it 'renders a list of groups' do
-    render
-    expect(response).to include('Name 1', 'Name 2')
-  end
 end

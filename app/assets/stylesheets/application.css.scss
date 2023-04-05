@@ -617,3 +617,20 @@ footer {
     margin-top: 1rem;
   }
 }
+
+.cat-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: #e68a00;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+}
+
+.cat-form {
+  margin: 30px auto;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+}
