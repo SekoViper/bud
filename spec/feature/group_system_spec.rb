@@ -13,18 +13,18 @@ RSpec.describe 'Groups', type: :system do
     it 'navigates to the new category page' do
       # display a page
       visit groups_path
-    
+
       # assert the displayed page
       assert_text 'Categories'
-    
+
       # navigate to the show page
       sleep(3)
       click_on 'New category'
-    
+
       # assert the displayed page
       sleep(3)
       assert_text('Back to groups', wait: 5)
-    end    
+    end
   end
 
   describe 'Creates a new category' do

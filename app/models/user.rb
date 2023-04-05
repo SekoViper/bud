@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   devise :confirmable unless Rails.env == 'test'
-  
+
   has_many :purchases, dependent: :destroy
   has_many :groups, dependent: :destroy
 end

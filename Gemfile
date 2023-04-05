@@ -15,10 +15,6 @@ gem 'factory_bot_rails', '~> 6.1.0'
 
 gem 'bullet'
 
-gem 'selenium-webdriver'
-
-gem 'webdrivers'
-
 gem 'database_cleaner'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
