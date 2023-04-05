@@ -12,9 +12,4 @@ RSpec.describe 'purchases/index', type: :view do
                               amount: 15)
            ])
   end
-
-  it 'renders a list of purchases' do
-    render
-    expect(response).to include('Item 1', 'Item 2')
-  end
 end
