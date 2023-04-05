@@ -1,0 +1,18 @@
+ <div class="actions">
+    <a href=<%= root_path %> id="back-btn"><i class="fa-solid fa-arrow-left">Back</i></a>
+    <h2>Register</h2>
+</div>
+<div class="devise-wrapper">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "devise-form"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="input-fields">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Name', class: "links links_with_border" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: "links links_with_border" %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "links links_with_border" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm password', class: "links links_with_border" %>
+      <%= f.submit "Submit", class: 'submit-btn' %>
+    </div>
+  <% end %>
+  <br> <br>
+  <%= render "devise/shared/links" %>
+</div>
